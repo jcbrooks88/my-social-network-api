@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "rootDir": ".",            // Set rootDir to the root of the server directory
+    "outDir": "./dist",        // Specify output directory for compiled JS (optional)
+    "esModuleInterop": true,      // Enable interoperability between CommonJS and ES modules
+    "strict": true,               // Enable strict type-checking (optional but recommended)
+    "skipLibCheck": true,         // Skip type checking of declaration files for performance
+    "moduleResolution": "node",   // Use Node.js module resolution to correctly resolve dependencies
+    "resolveJsonModule": true     // Allows importing JSON modules (if needed)
+  },
+  "include": [
+    "config/**/*.ts",          // Include all .ts files inside the config folder
+    "controllers/**/*.ts",     // Include all .ts files inside the controllers folder
+    "models/**/*.ts",          // Include all .ts files inside the models folder
+    "routes/**/*.ts",          // Include all .ts files inside the routes folder
+    "seeds/**/*.ts",           // Include all .ts files inside the seeds folder
+    "src/**/*.ts"              // Include the server.ts file in the src folder
+  ],
+  "exclude": [
+    "node_modules",             // Exclude the node_modules directory from being compiled
+    "dist" // Exclude the dist folder to prevent compiled files from being recompiled
+  ]
+}
+
+
