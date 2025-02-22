@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "../context/useAuth";
+import '../assets/loginForm.css';
 
 const LoginForm = () => {
   const { login } = useAuth();
@@ -18,7 +19,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div>
+    <div className="login-container">
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <input

@@ -1,0 +1,122 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #121212; /* Dark background */
+    color: #ffffff;
+    line-height: 1.6;
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Color Theme */
+  :root {
+    --teal: #1abc9c;
+    --purple: #9b59b6;
+    --white: #ffffff;
+    --black: #333333;
+  }
+  
+  /* Header */
+  header {
+    background-color: var(--purple);
+    padding: 20px;
+    text-align: center;
+  }
+  
+  header h1 {
+    font-size: 2.5rem;
+    color: var(--gold);
+    letter-spacing: 2px;
+  }
+  
+  /* Navigation */
+  nav {
+    background-color: var(--black);
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  nav a {
+    color: var(--teal);
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+  }
+  
+  nav a:hover {
+    color: var(--gold);
+  }
+  
+  /* Cards (For Posts/Content) */
+  .card {
+    background-color: #222;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  .card h2 {
+    color: var(--teal);
+    font-size: 1.8rem;
+  }
+  
+  .card p {
+    color: #ddd;
+    font-size: 1rem;
+  }
+  
+  /* Button Styles */
+  button {
+    background-color: var(--teal);
+    color: #fff;
+  }
+  
+  button:hover {
+    background-color: var(--purple);
+    color: var(--gold);
+  }
+  
+  /* Footer */
+  footer {
+    background-color: var(--black);
+    color: #ddd;
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
+  }
+  
+  footer a {
+    color: var(--teal);
+  }
+  
+  footer a:hover {
+    color: var(--gold);
+  }
+  

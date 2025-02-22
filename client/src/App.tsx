@@ -5,6 +5,7 @@ import LoginForm from "./components/LoginForm";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Navbar from "./components/Navbar";
+import "./assets/style.css";
 
 
 const UserInfo = () => {

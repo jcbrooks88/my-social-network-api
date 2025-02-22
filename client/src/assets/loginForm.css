@@ -1,0 +1,70 @@
+/* Login Form Container */
+.login-container {
+    background-color: var(--black);
+    padding: 30px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .login-container h2 {
+    text-align: center;
+    color: var(--gold);
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  /* Form Fields */
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid var(--purple);
+    background-color: #333;
+    color: #fff;
+    transition: all 0.3s ease;
+  }
+  
+  input[type="text"]:focus,
+  input[type="password"]:focus {
+    outline: none;
+    border-color: var(--teal);
+    background-color: #444;
+  }
+  
+  /* Button Styles */
+  button {
+    background-color: var(--teal);
+    color: #fff;
+    padding: 12px;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  button:hover {
+    background-color: var(--purple);
+    transform: translateY(-3px);
+  }
+  
+  button:active {
+    transform: translateY(0);
+  }
+  
+  /* Error Message */
+  p {
+    color: rgb(244, 149, 8);
+    font-size: 1rem;
+    text-align: center;
+    margin-top: 10px;
+  }
+  

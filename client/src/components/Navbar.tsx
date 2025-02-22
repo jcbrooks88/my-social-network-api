@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/useAuth";
-import "./Navbar.css"; // Import the CSS file
+import '../assets/navBar.css'; 
 
 const Navbar = () => {
   const { user, logout } = useAuth();
@@ -30,3 +30,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
