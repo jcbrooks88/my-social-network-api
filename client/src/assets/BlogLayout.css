@@ -1,0 +1,59 @@
+/* Blog Layout Styles */
+.layout-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #1a1a1a; /* Dark background for contrast */
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .header {
+    background-color: #009688; /* Teal */
+    padding: 2rem;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #fff;
+  }
+  
+  .main-content {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+  }
+  
+  .blog-post-wrapper {
+    width: 100%;
+    max-width: 900px;
+    background-color: #292b2c;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .post-title {
+    background-color: #673ab7; /* Purple */
+    color: #fff;
+    padding: 1.5rem;
+    font-size: 2rem;
+    margin: 0;
+  }
+  
+  .post-content {
+    padding: 2rem;
+    background-color: #fff;
+    color: #333;
+    font-size: 1rem;
+    line-height: 1.8;
+    text-align: justify;
+  }
+  
+  .footer {
+    background-color: #ff9800; /* Gold */
+    text-align: center;
+    padding: 1rem;
+    font-size: 1rem;
+  }
+  

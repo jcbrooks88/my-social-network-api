@@ -13,13 +13,17 @@ const Navbar = () => {
         </Link>
       </div>
       <div>
-        <Link to="/">Home</Link>
+        
         {user ? (
           <>
+            <Link to="/">Home</Link>
             <Link to="/profile">Profile</Link>
+            <Link to="/blog">Blog</Link>
+
             <button onClick={logout} className="logout-button">
               Logout
             </button>
+            
           </>
         ) : (
           <Link to="/login">Login</Link>
