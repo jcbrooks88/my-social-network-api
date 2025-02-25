@@ -11,7 +11,7 @@ const UserInfo = () => {
 
   return user ? (
     <div>
-      <p>Hello, {capitalizeFirstLetter(user)}!</p>
+      <p>Hello, {capitalizeFirstLetter(user.username)}!</p>
     </div>
   ) : (
     <LoginForm />

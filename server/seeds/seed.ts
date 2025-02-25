@@ -1,41 +1,65 @@
-import connection from '../config/connection';
-import User from '../models/User';
-import Thought from '../models/Thought';
+import mongoose from 'mongoose';
+import Thought from '../models/Thought'; // Your Thought model
+import Friend from '../models/Friend'; // Your Friend model
 
-const seedUsers = [
-  { username: 'jeff', email: 'jeff@example.com' },
-  { username: 'darlene', email: 'darlene@example.com' },
-  { username: 'brian', email: 'brian@example.com' }
+// Sample data for thoughts
+const thoughtsData = [
+  {
+    userId: 'user1',
+    content: 'This is my first thought!',
+    createdAt: new Date(),
+  },
+  {
+    userId: 'user2',
+    content: 'I love coding in React!',
+    createdAt: new Date(),
+  },
+  {
+    userId: 'user1',
+    content: 'MongoDB is awesome!',
+    createdAt: new Date(),
+  },
 ];
 
-const seedThoughts = [
-  { thoughtText: 'This is my first thought!', username: 'jeff' },
-  { thoughtText: 'Loving this social network app!', username: 'darlene' },
-  { thoughtText: 'Hello world!', username: 'brian' }
+// Sample data for friends
+const friendsData = [
+  { userId: 'user1', friends: ['user2', 'user3'] },
+  { userId: 'user2', friends: ['user1'] },
+  { userId: 'user3', friends: ['user1'] },
 ];
 
 const seedDatabase = async () => {
   try {
-    await connection.dropDatabase();
-    
-    const users = await User.insertMany(seedUsers);
-    const thoughts = await Thought.insertMany(seedThoughts);
+    // Connect to your MongoDB instance
+    await mongoose.connect('mongodb://localhost:27017/social_network');
 
-    // Link thoughts to users
-    for (let thought of thoughts) {
-      const user = users.find(u => u.username === thought.username);
-      if (user) {
-        user.thoughts.push(thought._id);
-        await user.save();
-      }
+    // Check if thoughts or friends data already exists
+    const thoughtsCount = await Thought.countDocuments();
+    const friendsCount = await Friend.countDocuments();
+
+    // Seed thoughts if the collection is empty
+    if (thoughtsCount === 0) {
+      await Thought.insertMany(thoughtsData);
+      console.log('Thoughts have been seeded.');
+    } else {
+      console.log('Thoughts already exist.');
     }
 
-    console.log('Database seeded successfully!');
-    process.exit(0);
-  } catch (err) {
-    console.error(err);
-    process.exit(1);
+    // Seed friends if the collection is empty
+    if (friendsCount === 0) {
+      await Friend.insertMany(friendsData);
+      console.log('Friends have been seeded.');
+    } else {
+      console.log('Friends data already exists.');
+    }
+
+    // Close the database connection after seeding
+    mongoose.connection.close();
+  } catch (error) {
+    console.error('Error seeding the database:', error);
   }
 };
 
-connection.once('open', seedDatabase);
+// Run the seed function
+seedDatabase();
+
