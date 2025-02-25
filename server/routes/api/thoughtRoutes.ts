@@ -7,15 +7,13 @@ import {
   deleteThought,
   addReaction,
   removeReaction
-} from '../../controllers/thoughtController'; // Adjust import path
+} from '../../controllers/thoughtController'; 
 
-const router = Router();
+const thoughtRoutes = Router();
 
-// Pass req and res to the controller functions
-router.get('/', async (req, res) => {
+thoughtRoutes.get('/', async (req, res) => {
   try {
-    const thoughts = await getThoughts(req, res); // Pass req and res here
-    res.json(thoughts);
+    await getThoughts(req, res);  // Delegate to controller
   } catch (err) {
     if (err instanceof Error) {
       res.status(500).json({ error: err.message });
@@ -25,10 +23,9 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
+thoughtRoutes.post('/', async (req, res) => {
   try {
-    const newThought = await createThought(req, res); // Pass req and res here
-    res.status(201).json(newThought);
+    await createThought(req, res);  // Delegate to controller
   } catch (err) {
     if (err instanceof Error) {
       res.status(500).json({ error: err.message });
@@ -38,10 +35,9 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.get('/:id', async (req, res) => {
+thoughtRoutes.get('/:id', async (req, res) => {
   try {
-    const thought = await getThoughtById(req, res);
-    res.json(thought);
+    await getThoughtById(req, res);  // Delegate to controller
   } catch (err) {
     if (err instanceof Error) {
       res.status(500).json({ error: err.message });
@@ -51,10 +47,9 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.put('/:id', async (req, res) => {
+thoughtRoutes.put('/:id', async (req, res) => {
   try {
-    const updatedThought = await updateThought(req, res); // Pass req and res here
-    res.json(updatedThought);
+    await updateThought(req, res);  // Delegate to controller
   } catch (err) {
     if (err instanceof Error) {
       res.status(500).json({ error: err.message });
@@ -64,10 +59,10 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-router.delete('/:id', async (req, res) => {
+thoughtRoutes.delete('/:id', async (req, res) => {
   try {
-    await deleteThought(req, res); // Pass req and res here
-    res.status(204).send();
+    await deleteThought(req, res);  // Delegate to controller
+    res.status(204).send();  // Send status only after controller completes
   } catch (err) {
     if (err instanceof Error) {
       res.status(500).json({ error: err.message });
@@ -77,10 +72,9 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-router.post('/:id/reactions', async (req, res) => {
+thoughtRoutes.post('/:id/reactions', async (req, res) => {
   try {
-    const reaction = await addReaction(req, res); // Pass req and res here
-    res.status(201).json(reaction);
+    await addReaction(req, res);  // Delegate to controller
   } catch (err) {
     if (err instanceof Error) {
       res.status(500).json({ error: err.message });
@@ -90,10 +84,10 @@ router.post('/:id/reactions', async (req, res) => {
   }
 });
 
-router.delete('/:id/reactions/:reactionId', async (req, res) => {
+thoughtRoutes.delete('/:id/reactions/:reactionId', async (req, res) => {
   try {
-    await removeReaction(req, res); // Pass req and res here
-    res.status(204).send();
+    await removeReaction(req, res);  // Delegate to controller
+    res.status(204).send();  // Send status after controller completes
   } catch (err) {
     if (err instanceof Error) {
       res.status(500).json({ error: err.message });
@@ -103,4 +97,4 @@ router.delete('/:id/reactions/:reactionId', async (req, res) => {
   }
 });
 
-export default router;
+export default thoughtRoutes;

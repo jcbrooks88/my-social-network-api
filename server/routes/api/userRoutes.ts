@@ -5,14 +5,13 @@ import {
   createUser,
   updateUser,
   deleteUser
-} from '../../controllers/userController';  // Adjust import path
+} from '../../controllers/userController';
 
-const router = Router();
+const userRoutes = Router();
 
-router.get('/', async (req, res) => {
+userRoutes.get('/', async (req, res) => {
   try {
-    const users = await getUsers(req, res);  // Pass req and res to controller function
-    res.json(users);
+    await getUsers(req, res);  // Delegate response handling to the controller
   } catch (err) {
     if (err instanceof Error) {
       res.status(500).json({ error: err.message });
@@ -22,10 +21,9 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
+userRoutes.post('/', async (req, res) => {
   try {
-    const newUser = await createUser(req, res);  // Pass req and res to controller function
-    res.status(201).json(newUser);
+    await createUser(req, res);  // Delegate response handling to the controller
   } catch (err) {
     if (err instanceof Error) {
       res.status(500).json({ error: err.message });
@@ -35,10 +33,9 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.get('/:id', async (req, res) => {
+userRoutes.get('/:id', async (req, res) => {
   try {
-    const user = await getUserById(req, res);
-    res.json(user);
+    await getUserById(req, res);  // Delegate response handling to the controller
   } catch (err) {
     if (err instanceof Error) {
       res.status(500).json({ error: err.message });
@@ -48,10 +45,9 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.put('/:id', async (req, res) => {
+userRoutes.put('/:id', async (req, res) => {
   try {
-    const updatedUser = await updateUser(req, res);  // Pass req and res to controller function
-    res.json(updatedUser);
+    await updateUser(req, res);  // Delegate response handling to the controller
   } catch (err) {
     if (err instanceof Error) {
       res.status(500).json({ error: err.message });
@@ -61,10 +57,10 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-router.delete('/:id', async (req, res) => {
+userRoutes.delete('/:id', async (req, res) => {
   try {
-    await deleteUser(req, res);  // Pass req and res to controller function
-    res.status(204).send();
+    await deleteUser(req, res);  // Delegate response handling to the controller
+    res.status(204).send();  // Send status after controller completes
   } catch (err) {
     if (err instanceof Error) {
       res.status(500).json({ error: err.message });
@@ -74,6 +70,4 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-export default router;
-
-
+export default userRoutes;

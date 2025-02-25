@@ -1,80 +1,91 @@
 import { Request, Response } from 'express';
 import Thought from '../models/Thought';
-import User from '../models/User';
 
-export const getThoughts = async (req: Request, res: Response): Promise<Response> => {
+
+export const getThoughts = async (req: Request, res: Response) => {
   try {
-    const thoughts = await Thought.find();
-    return res.json(thoughts);
+    const thoughts = await Thought.find();  // Example: Find all thoughts
+    res.json(thoughts);
   } catch (err) {
-    return res.status(500).json(err);
+    res.status(500).json({ error: err.message });
   }
 };
 
-export const getThoughtById = async (req: Request, res: Response): Promise<Response> => {
+// Get a specific thought by ID
+export const getThoughtById = async (req: Request, res: Response) => {
   try {
-    const thought = await Thought.findById(req.params.id);
-    if (!thought) return res.status(404).json({ message: 'Thought not found' });
-    return res.json(thought);
+    const thought = await Thought.findById(req.params.id);  // Example: Find thought by ID
+    if (!thought) {
+      return res.status(404).json({ error: 'Thought not found' });
+    }
+    res.json(thought);
   } catch (err) {
-    return res.status(500).json(err);
+    res.status(500).json({ error: err.message });
   }
 };
 
-export const createThought = async (req: Request, res: Response): Promise<Response> => {
+// Create a new thought
+export const createThought = async (req: Request, res: Response) => {
   try {
-    const thought = await Thought.create(req.body);
-    await User.findByIdAndUpdate(req.body.userId, { $push: { thoughts: thought._id } }, { new: true });
-    return res.json(thought);
+    const newThought = new Thought(req.body);  // Assuming req.body contains the thought data
+    await newThought.save();
+    res.status(201).json(newThought);  // Return the created thought
   } catch (err) {
-    return res.status(400).json(err);
+    res.status(500).json({ error: err.message });
   }
 };
 
-export const updateThought = async (req: Request, res: Response): Promise<Response> => {
+// Update an existing thought
+export const updateThought = async (req: Request, res: Response) => {
   try {
-    const thought = await Thought.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
-    if (!thought) return res.status(404).json({ message: 'Thought not found' });
-    return res.json(thought);
+    const updatedThought = await Thought.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!updatedThought) {
+      return res.status(404).json({ error: 'Thought not found' });
+    }
+    res.json(updatedThought);
   } catch (err) {
-    return res.status(400).json(err);
+    res.status(500).json({ error: err.message });
   }
 };
 
-export const deleteThought = async (req: Request, res: Response): Promise<Response> => {
+// Delete a thought
+export const deleteThought = async (req: Request, res: Response) => {
   try {
     const thought = await Thought.findByIdAndDelete(req.params.id);
-    if (!thought) return res.status(404).json({ message: 'Thought not found' });
-    return res.json({ message: 'Thought deleted' });
+    if (!thought) {
+      return res.status(404).json({ error: 'Thought not found' });
+    }
   } catch (err) {
-    return res.status(500).json(err);
+    res.status(500).json({ error: err.message });
   }
 };
 
-export const addReaction = async (req: Request, res: Response): Promise<Response> => {
+// Add a reaction to a thought
+export const addReaction = async (req: Request, res: Response) => {
   try {
-    const thought = await Thought.findByIdAndUpdate(
-      req.params.id,
-      { $push: { reactions: req.body } },
-      { new: true, runValidators: true }
-    );
-    if (!thought) return res.status(404).json({ message: 'Thought not found' });
-    return res.json(thought);
+    const thought = await Thought.findById(req.params.id);
+    if (!thought) {
+      return res.status(404).json({ error: 'Thought not found' });
+    }
+    thought.reactions.push(req.body);  // Assuming req.body contains reaction data
+    await thought.save();
+    res.status(201).json(thought);
   } catch (err) {
-    return res.status(500).json(err);
+    res.status(500).json({ error: err.message });
   }
 };
 
-export const removeReaction = async (req: Request, res: Response): Promise<Response> => {
+// Remove a reaction from a thought
+export const removeReaction = async (req: Request, res: Response) => {
   try {
-    const thought = await Thought.findByIdAndUpdate(
-      req.params.id,
-      { $pull: { reactions: { reactionId: req.params.reactionId } } },
-      { new: true }
-    );
-    if (!thought) return res.status(404).json({ message: 'Thought not found' });
-    return res.json(thought);
+    const thought = await Thought.findById(req.params.id);
+    if (!thought) {
+      return res.status(404).json({ error: 'Thought not found' });
+    }
+    thought.reactions = thought.reactions.filter((reaction: any) => reaction.id !== req.params.reactionId);
+    await thought.save();
+    res.status(204).send();  // No content
   } catch (err) {
-    return res.status(500).json(err);
+    res.status(500).json({ error: err.message });
   }
 };

@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import userRoutes from './api/userRoutes';  // TypeScript will resolve '.ts' automatically
-import thoughtRoutes from './api/thoughtRoutes';  // Same here
+import userRoutes from './api/userRoutes';
+import thoughtRoutes from './api/thoughtRoutes';
 
-const router: Router = Router();  // Explicitly define the router type
+const router: Router = Router();
 
 // Define routes for users and thoughts
 router.use('/users', userRoutes);
