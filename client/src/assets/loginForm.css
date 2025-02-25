@@ -1,17 +1,19 @@
 /* Login Form Container */
+
+/* Centers the login box */
 .login-container {
-    background-color: var(--black);
-    padding: 30px;
-    border-radius: 10px;
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-  }
-  
+  width: 90%;
+  max-width: 400px; /* Prevents it from getting too wide */
+  background: var(--black);
+  padding: 20px;
+  border-radius: 10px;
+  margin: 0 auto;
+  box-shadow: 0 4px 10px var(--black);
+}
+
   .login-container h2 {
     text-align: center;
-    color: var(--gold);
+    color: var(--teal);
     font-size: 2rem;
     margin-bottom: 20px;
   }
@@ -28,17 +30,17 @@
     padding: 12px;
     font-size: 1rem;
     border-radius: 5px;
-    border: 1px solid var(--purple);
-    background-color: #333;
-    color: #fff;
+    border: 2px solid var(--teal);
+    background-color: #9c9b9b;
+    color: var(--black);
     transition: all 0.3s ease;
   }
   
   input[type="text"]:focus,
   input[type="password"]:focus {
     outline: none;
-    border-color: var(--teal);
-    background-color: #444;
+    border-color: var(--purple);
+    background-color: #fff;;
   }
   
   /* Button Styles */
@@ -61,10 +63,3 @@
   }
   
   /* Error Message */
-  p {
-    color: rgb(244, 149, 8);
-    font-size: 1rem;
-    text-align: center;
-    margin-top: 10px;
-  }
-  

@@ -1,0 +1,22 @@
+/* Home Page Styling */
+
+/* Centers the home container in the viewport */
+.home-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Takes full viewport height */
+  background-color: var(--grayblack); /* Dark theme background */
+  color: white;
+  text-align: center;
+}
+
+/* Title styling */
+.home-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+

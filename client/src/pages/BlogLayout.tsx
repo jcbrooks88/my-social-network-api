@@ -1,4 +1,4 @@
-import '../assets/BlogLayout.css';
+import '../assets/blogLayout.css';
 
 const BlogLayout = () => {
   return (
