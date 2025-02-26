@@ -1,7 +1,12 @@
-// ** Importing Dependencies
 import express from 'express';
-import db from '../config/connection';  // Import without '.js' as TypeScript handles this
+import db from '../config/connection';
 import routes from '../routes/index';
+import Thought from './models/Thought';
+import Friend from './models/Friend';
+import { seedDatabase } from './seed';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const PORT: number = process.env.PORT ? parseInt(process.env.PORT) : 3001;
 const app = express();
@@ -11,7 +16,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // API Routes
-app.use('/api', routes);
+app.use('/api', routes);  // /api is the base route for your API
 
 // Catch-All Route for Undefined Routes (404)
 app.use('*', (_req, res) => {
@@ -19,17 +24,22 @@ app.use('*', (_req, res) => {
 });
 
 // Connecting to the Database and Starting the Server
-db.once('open', () => {
-    app.listen(PORT, () => {
-        console.log(`🚀 API server running on http://localhost:${PORT}`);
-    });
+db.once('open', async () => {
+  // Seed the database only in development environment
+  if (process.env.NODE_ENV === 'development') {
+    const thoughtsCount = await Thought.countDocuments();
+    const friendsCount = await Friend.countDocuments();
+
+    if (thoughtsCount === 0 && friendsCount === 0) {
+      console.log('Seeding database...');
+      await seedDatabase();  // Call the seed function
+    } else {
+      console.log('Database already seeded or contains data.');
+    }
+  }
+
+  // Start the server
+  app.listen(PORT, () => {
+    console.log(`🚀 API server running on http://localhost:${PORT}`);
+  });
 });
-
-
-
-
-// ** How It Works in Practice
-    // The database connection (db) is established.
-    // Once the database is connected ('open' event fires), the Express server starts listening for requests.
-    // Middleware (express.json() and express.urlencoded()) processes incoming request data.
-    // The API routes (routes) handle requests.

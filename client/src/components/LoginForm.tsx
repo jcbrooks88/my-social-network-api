@@ -1,20 +1,24 @@
 import { useState } from "react";
 import { useAuth } from "../context/useAuth";
-import '../assets/loginForm.css';
+import { useNavigate } from "react-router-dom";
+import "../assets/loginForm.css";
 
 const LoginForm = () => {
   const { login } = useAuth();
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const success = login(username, password);
-    if (!success) {
-      setError("Invalid username or password");
-    } else {
+    const success = await login(username, password);
+    
+    if (success) {
       setError("");
+      navigate("/");
+    } else {
+      setError("Invalid username or password");
     }
   };
 

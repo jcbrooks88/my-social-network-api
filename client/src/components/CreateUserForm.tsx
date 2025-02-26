@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { createUser } from '../api/userApi';
+import { createUser } from '../api/friendApi';
 
 const CreateUserForm: React.FC = () => {
     const [username, setUsername] = useState('');

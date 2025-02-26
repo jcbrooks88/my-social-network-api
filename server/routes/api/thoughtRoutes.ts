@@ -13,7 +13,7 @@ const thoughtRoutes = Router();
 
 thoughtRoutes.get('/', async (req, res) => {
   try {
-    await getThoughts(req, res);  // Delegate to controller
+    await getThoughts(req, res);
   } catch (err) {
     if (err instanceof Error) {
       res.status(500).json({ error: err.message });
@@ -25,7 +25,7 @@ thoughtRoutes.get('/', async (req, res) => {
 
 thoughtRoutes.post('/', async (req, res) => {
   try {
-    await createThought(req, res);  // Delegate to controller
+    await createThought(req, res);
   } catch (err) {
     if (err instanceof Error) {
       res.status(500).json({ error: err.message });

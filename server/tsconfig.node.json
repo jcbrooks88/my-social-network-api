@@ -13,7 +13,7 @@
   "include": [
     "config/**/*.ts",
     "controllers/**/*.ts",
-    "models/**/*.ts",
+    "src/models/**/*.ts",
     "routes/**/*.ts",
     "seeds/**/*.ts",
     "src/**/*.ts"

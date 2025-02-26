@@ -5,11 +5,11 @@ import {
   createUser,
   updateUser,
   deleteUser
-} from '../../controllers/userController';
+} from '../../controllers/friendController';
 
-const userRoutes = Router();
+const friendRoutes = Router();
 
-userRoutes.get('/', async (req, res) => {
+friendRoutes.get('/', async (req, res) => {
   try {
     await getUsers(req, res);  // Delegate response handling to the controller
   } catch (err) {
@@ -21,9 +21,9 @@ userRoutes.get('/', async (req, res) => {
   }
 });
 
-userRoutes.post('/', async (req, res) => {
+friendRoutes.post('/', async (req, res) => {
   try {
-    await createUser(req, res);  // Delegate response handling to the controller
+    await createUser(req, res);
   } catch (err) {
     if (err instanceof Error) {
       res.status(500).json({ error: err.message });
@@ -33,9 +33,9 @@ userRoutes.post('/', async (req, res) => {
   }
 });
 
-userRoutes.get('/:id', async (req, res) => {
+friendRoutes.get('/:id', async (req, res) => {
   try {
-    await getUserById(req, res);  // Delegate response handling to the controller
+    await getUserById(req, res);
   } catch (err) {
     if (err instanceof Error) {
       res.status(500).json({ error: err.message });
@@ -45,9 +45,9 @@ userRoutes.get('/:id', async (req, res) => {
   }
 });
 
-userRoutes.put('/:id', async (req, res) => {
+friendRoutes.put('/:id', async (req, res) => {
   try {
-    await updateUser(req, res);  // Delegate response handling to the controller
+    await updateUser(req, res);
   } catch (err) {
     if (err instanceof Error) {
       res.status(500).json({ error: err.message });
@@ -57,7 +57,7 @@ userRoutes.put('/:id', async (req, res) => {
   }
 });
 
-userRoutes.delete('/:id', async (req, res) => {
+friendRoutes.delete('/:id', async (req, res) => {
   try {
     await deleteUser(req, res);  // Delegate response handling to the controller
     res.status(204).send();  // Send status after controller completes
@@ -70,4 +70,4 @@ userRoutes.delete('/:id', async (req, res) => {
   }
 });
 
-export default userRoutes;
+export default friendRoutes;

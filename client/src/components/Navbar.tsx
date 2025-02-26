@@ -1,34 +1,51 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/useAuth";
-import '../assets/navBar.css'; 
+import { useNavigate } from "react-router-dom"; 
+import "../assets/navBar.css";
 
 const Navbar = () => {
-  const { user, logout } = useAuth(); // Access user and logout from the context
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/logout"); 
+  };
 
   return (
     <nav className="navbar">
-      <div>
-        <Link to="/" className="text-xl font-bold">
+      <div className="nav-left">
+        <Link to="/" className="brand">
           Social Network
         </Link>
       </div>
-      <div>
-        {/* If user is logged in, show navigation links and logout button */}
+      <ul className="nav-right">
         {user ? (
           <>
-            <Link to="/">Home</Link>
-            <Link to="/profile">Profile</Link>
-            <Link to="/blog">Blog</Link>
-
-            <button onClick={logout} className="logout-button">
-              Logout
-            </button>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/profile">Profile</Link>
+            </li>
+            <li>
+              <Link to="/friends">Friends</Link>
+            </li>
+            <li>
+              <Link to="/blog">Blog</Link>
+            </li>
+            <li>
+              <button onClick={handleLogout} className="logout-button">
+                Logout
+              </button>
+            </li>
           </>
         ) : (
-          // If user is not logged in, show Login link
-          <Link to="/login">Login</Link>
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
         )}
-      </div>
+      </ul>
     </nav>
   );
 };

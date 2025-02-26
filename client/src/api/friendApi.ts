@@ -1,11 +1,11 @@
-const BASE_URL = 'http://localhost:3001/api/users';
+const BASE_URL = 'http://localhost:3001/api/friends';
 
-// Fetch all users
-export const getUsers = async () => {
+// Fetch all friends (users)
+export const getFriends = async () => {
     try {
         const response = await fetch(BASE_URL);
         if (!response.ok) {
-            throw new Error('Error fetching users');
+            throw new Error('Error fetching friends');
         }
         const data = await response.json();
         return data;
@@ -15,19 +15,19 @@ export const getUsers = async () => {
     }
 };
 
-// Create a new user
-export const createUser = async (userData: { username: string; email: string }) => {
+// Create a new friend
+export const createFriend = async (friendData: { userId: string; friends: string[] }) => {
     try {
         const response = await fetch(BASE_URL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(userData),
+            body: JSON.stringify(friendData),
         });
 
         if (!response.ok) {
-            throw new Error('Error creating user');
+            throw new Error('Error creating friend');
         }
         const data = await response.json();
         return data;

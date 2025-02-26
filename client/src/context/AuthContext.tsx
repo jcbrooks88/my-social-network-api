@@ -1,15 +1,15 @@
-import { createContext, ReactNode, useContext, useState } from 'react';
+import { createContext, ReactNode, useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface User {
   id: string;
   username: string;
-  // Add other user properties as needed
 }
 
 interface AuthContextType {
   isAuthenticated: boolean;
-  user: User | null;  // Ensure user is an object or null
-  login: (username: string, password: string) => boolean;
+  user: User | null;
+  login: (username: string, password: string) => Promise<boolean>;
   logout: () => void;
 }
 
@@ -17,22 +17,35 @@ export const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-  const [user, setUser] = useState<User | null>(null); // Set initial user state as null
+  const [user, setUser] = useState<User | null>(null);
+  const navigate = useNavigate(); // Add navigation
 
-  const login = (username: string, password: string) => {
-    // Replace with your authentication logic (e.g., API call)
-    if (username === "user" && password === "password") {
-      const loggedInUser = { id: "123", username };  // Example user object
-      setUser(loggedInUser);
+  const login = async (username: string, password: string) => {
+    try {
+      const response = await fetch("http://localhost:3001/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      });
+
+      if (!response.ok) return false;
+
+      const data = await response.json();
+      setUser({ id: data.id, username: data.username });
       setIsAuthenticated(true);
+      localStorage.setItem("token", data.token);
       return true;
+    } catch (error) {
+      console.error("Login failed:", error);
+      return false;
     }
-    return false;
   };
 
   const logout = () => {
-    setUser(null);  // Clear user on logout
+    setUser(null);
     setIsAuthenticated(false);
+    localStorage.removeItem("token");
+    navigate("/logout"); // Redirect to logout page
   };
 
   return (
@@ -45,8 +58,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 export const useAuth = (): AuthContextType => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
 };
-
