@@ -1,7 +1,7 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-interface User {
+export interface User {
   id: string;
   username: string;
 }
@@ -18,7 +18,17 @@ export const AuthContext = createContext<AuthContextType | undefined>(undefined)
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [user, setUser] = useState<User | null>(null);
-  const navigate = useNavigate(); // Add navigation
+
+  // ✅ Load user from localStorage on app start
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    const token = localStorage.getItem("token");
+
+    if (storedUser && token) {
+      setUser(JSON.parse(storedUser));
+      setIsAuthenticated(true);
+    }
+  }, []);
 
   const login = async (username: string, password: string) => {
     try {
@@ -31,9 +41,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       if (!response.ok) return false;
 
       const data = await response.json();
-      setUser({ id: data.id, username: data.username });
-      setIsAuthenticated(true);
+      const loggedInUser = { id: data.id, username: data.username };
+
+      // ✅ Save user data and token in localStorage
+      localStorage.setItem("user", JSON.stringify(loggedInUser));
       localStorage.setItem("token", data.token);
+
+      setUser(loggedInUser);
+      setIsAuthenticated(true);
+
       return true;
     } catch (error) {
       console.error("Login failed:", error);
@@ -42,10 +58,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const logout = () => {
+    const navigate = useNavigate(); // ✅ Move useNavigate inside logout()
+
     setUser(null);
     setIsAuthenticated(false);
+    localStorage.removeItem("user");
     localStorage.removeItem("token");
-    navigate("/logout"); // Redirect to logout page
+
+    navigate("/login"); // Redirect to login after logout
   };
 
   return (

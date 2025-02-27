@@ -1,18 +1,15 @@
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import './assets/global.css';  // Import global styles (e.g., Tailwind CSS)
-import App from './App.tsx';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+import App from "./App";
+import { AuthProvider } from "./context/AuthContext";
 
-// Ensure rootElement is of type HTMLElement and handle null case
-const rootElement = document.getElementById('root') as HTMLElement | null;
-
-if (rootElement) {
-  createRoot(rootElement).render(
-    <StrictMode>
-      <App />
-    </StrictMode>
-  );
-} else {
-  console.error('Root element not found!');
-}
-
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </BrowserRouter>
+  </React.StrictMode>
+);

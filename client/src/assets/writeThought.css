@@ -1,0 +1,67 @@
+/* WriteThought Styles */
+.write-thought-container {
+    width: 100%;
+    max-width: 600px;
+    background-color: var(--blackBlack);
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Input field */
+.thought-input {
+    width: 100%;
+    background-color: var(--grayblack);
+    border: none;
+    border-radius: 12px;
+    padding: 1rem;
+    font-size: 1rem;
+    color: var(--white);
+    outline: none;
+    resize: none;
+    transition: background 0.3s ease-in-out;
+}
+
+.thought-input::placeholder {
+    color: var(--gold);
+    opacity: 0.7;
+}
+
+/* Input focus effect */
+.thought-input:focus {
+    background-color: var(--black);
+}
+
+/* Submit button */
+.thought-submit {
+    background-color: var(--gold);
+    color: var(--blackBlack);
+    border: none;
+    padding: 0.8rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.thought-submit:hover {
+    background-color: var(--white);
+    color: var(--black);
+}
+
+/* Disable button */
+.thought-submit:disabled {
+    background-color: var(--grayblack);
+    cursor: not-allowed;
+}
+
+/* Container for input and button */
+.thought-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

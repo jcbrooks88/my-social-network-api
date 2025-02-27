@@ -7,7 +7,7 @@ import {
   deleteUser,
   getFriends,
   addFriend
-} from '../../controllers/friendController';
+} from '../../controllers/friendController.js';
 
 const friendRoutes = Router();
 

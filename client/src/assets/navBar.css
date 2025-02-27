@@ -1,86 +1,102 @@
-/* Navbar Container */
 .navbar {
-  background-color: var(--grayblack);
-  padding: 15px 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 4px 10px var(--grayblack);
+  padding: 1rem 2rem;
+  background-color: var(--black);
+  border-bottom: 1px solid var(--grayblack);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-/* Navigation Links */
-.nav-right {
-  list-style: none;
+.nav-left {
   display: flex;
-  gap: 20px;
   align-items: center;
 }
 
-.nav-right li {
-  display: inline;
-}
-
-/* General Link Styling */
-.navbar a {
-  color: var(--graywhite);
-  font-size: 1.2rem;
-  text-decoration: none;
-  padding: 8px 12px;
-  transition: color 0.3s ease;
-}
-
-.navbar a:hover {
-  color: var(--gold);
-}
-
-/* Logo */
-.navbar .brand {
-  font-size: 1.8rem;
-  color: var(--teal);
+.brand {
+  font-size: 1.5rem;
   font-weight: bold;
-  letter-spacing: 1.5px;
+  color: var(--gold);
   text-decoration: none;
-  transition: color 0.3s ease;
 }
 
-.navbar .brand:hover {
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--gold);
+  cursor: pointer;
+  margin-left: 15px;
+}
+
+.nav-right {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+
+.nav-right li {
+  display: flex;
+  align-items: center;
+}
+
+.nav-right a,
+.logout-button {
+  text-decoration: none;
+  color: var(--white);
+  font-size: 1rem;
+  transition: color 0.3s ease-in-out;
+}
+
+.nav-right a:hover {
   color: var(--gold);
 }
 
-/* Logout Button */
-.navbar button.logout-button {
-  background-color: var(--black);
-  color: white;
-  padding: 8px 15px;
-  border-radius: 5px;
-  font-size: 1rem;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.navbar button.logout-button:hover {
+.logout-button {
   background-color: var(--gold);
-  transform: translateY(-2px);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
 }
 
-.navbar button.logout-button:active {
-  transform: translateY(0);
+.logout-button:hover {
+  background-color: var(--grayblack);
+  color: var(--gold);
 }
 
-/* Responsive Design */
+/* Mobile Styles */
 @media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
+  .menu-toggle {
+    display: block;
   }
 
   .nav-right {
+    display: none;
     flex-direction: column;
-    gap: 10px;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: var(--blackBlack);
+    width: 180px;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
   }
 
-  .navbar a {
-    margin-bottom: 10px;
+  .nav-right.open {
+    display: flex;
+  }
+
+  .nav-right li {
+    padding: 12px 0;
+  }
+
+  .nav-right a {
+    font-size: 1.1rem;
   }
 }

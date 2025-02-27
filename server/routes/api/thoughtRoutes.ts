@@ -8,7 +8,7 @@ import {
   removeReaction,
   getUserThoughts, // New controller function to fetch thoughts of a user
   addThoughtReaction // New controller function to add a reaction to a thought
-} from '../../controllers/thoughtController'; 
+} from '../../controllers/thoughtController.js'; 
 
 const thoughtRoutes = Router();
 

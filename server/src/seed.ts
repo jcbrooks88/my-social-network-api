@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import Friend from './models/Friend';
-import Thought from './models/Thought';
+import Friend from './models/Friend.js';
+import Thought from './models/Thought.js';
 
 dotenv.config(); // Load environment variables
 

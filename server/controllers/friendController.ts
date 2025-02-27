@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import mongoose from 'mongoose';
-import Friend from '../src/models/Friend';
+import Friend from '../src/models/Friend.js';
 
 // Get all users with populated friends and thoughts
 export const getUsers = async (_req: Request, res: Response): Promise<Response> => {

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { useAuth } from '../context/useAuth';  // Ensure the user is authenticated
+import { useAuth } from '../context/useAuth';  
 import { useNavigate } from 'react-router-dom';
+import '../assets/writeThought.css';  // Import the CSS file
 
 const WriteThought = () => {
-  const { user } = useAuth();  // Get the current user from context
+  const { user } = useAuth();
   const [thought, setThought] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -26,22 +27,21 @@ const WriteThought = () => {
     }
 
     try {
-      // Send the new thought to the backend (replace with API call)
       const response = await fetch('/api/thoughts', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          userId: user.id,  // Assuming user.id exists
-          thought,
+          userId: user.id,
+          content: thought, // Ensure the correct field name for the backend
         }),
       });
 
       if (response.ok) {
         setError('');
         setThought('');
-        navigate('/thoughts');  // Redirect to the thoughts page or a confirmation page
+        navigate('/thoughts');  
       } else {
         setError('Failed to save your thought.');
       }
@@ -51,17 +51,27 @@ const WriteThought = () => {
   };
 
   return (
-    <div>
-      <h2>Share Your Thought</h2>
-      <form onSubmit={handleSubmit}>
+    <div className="write-thought-container">
+      <div className="thought-user-info">
+        <div className="thought-avatar"></div> 
+        <h3>{user?.username ? user.username.charAt(0).toUpperCase() + user.username.slice(1) : 'Guest'}</h3>
+      </div>
+      <form onSubmit={handleSubmit} className="thought-form">
         <textarea
+          className="thought-input"
           value={thought}
           onChange={handleThoughtChange}
           placeholder="What's on your mind?"
         />
-        <button type="submit">Post Thought</button>
+        <button 
+          type="submit" 
+          className="thought-submit" 
+          disabled={!thought.trim()}
+        >
+          Post
+        </button>
       </form>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && <p className="error-message">{error}</p>}
     </div>
   );
 };

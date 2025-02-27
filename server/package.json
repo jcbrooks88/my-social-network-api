@@ -7,14 +7,19 @@
     "start": "tsx src/server.ts",
     "build": "tsc -p tsconfig.json"
   },
-  
   "dependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^3.0.2",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.10.1"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "@types/express": "^5.0.0",
+    "@types/jsonwebtoken": "^9.0.9",
     "tsx": "^4.19.3",
     "typescript": "^5.7.3"
   },

@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { Types } from 'mongoose';  // Import mongoose Types for ObjectId handling
-import Thought from '../src/models/Thought';  // Assuming Thought is your model for thoughts
-import Reaction from '../src/models/Reaction';  // Assuming Reaction is the model for reactions
+import Thought from '../src/models/Thought.js';  // Assuming Thought is your model for thoughts
+import Reaction from '../src/models/Reaction.js';  // Assuming Reaction is the model for reactions
 
 // Get a user's thoughts and populate reactions
 export const getUserThoughts = async (req: Request, res: Response) => {

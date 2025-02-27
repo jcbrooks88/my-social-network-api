@@ -1,10 +1,11 @@
 import express, { Request, Response, NextFunction } from 'express';
-import db from '../config/connection';
-import routes from '../routes/index';
-import Thought from './models/Thought';
-import Friend from './models/Friend';
-import { seedDatabase } from './seed';
+import db from '../config/connection.js';
+import routes from '../routes/index.js';
+import Thought from './models/Thought.js';
+import Friend from './models/Friend.js';
+import { seedDatabase } from './seed.js';
 import dotenv from 'dotenv';
+import authRoutes from "../routes/api/authRoutes.js";
 
 dotenv.config();
 
@@ -33,6 +34,7 @@ app.use((req: Request, res: Response, next: NextFunction): void => {
 
 // API Routes
 app.use('/api', routes);  // /api is the base route for your API
+app.use("/auth", authRoutes);
 
 // Catch-All Route for Undefined Routes (404)
 app.use('*', (_req: Request, res: Response) => {

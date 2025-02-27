@@ -1,0 +1,100 @@
+/* Blog Layout Styles */
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--blackBlack); /* Dark background like Twitter */
+}
+
+.header {
+  background-color: var(--black);
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--gold);
+  border-bottom: 1px solid var(--grayblack);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Main content area */
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+/* Blog post wrapper (entire timeline container) */
+.blog-post-wrapper {
+  width: 100%;
+  max-width: 600px; /* Adjusted for a Twitter-style feed */
+  background-color: var(--blackBlack);
+  border-radius: 8px;
+}
+
+/* Thought timeline container */
+.thoughts-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 1rem;
+}
+
+/* Individual thought (tweet-like card) */
+.thought {
+  display: flex;
+  align-items: flex-start;
+  background-color: var(--grayblack);
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease-in-out;
+  border-bottom: 1px solid var(--black);
+  position: relative; /* Make this container a positioning context for the timestamp */
+}
+
+.thought:hover {
+  background-color: var(--black);
+}
+
+/* Avatar styling (placeholder for now) */
+.thought-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--gold);
+  margin-right: 10px;
+}
+
+/* Thought content */
+.thought-content {
+  flex-grow: 1;
+  font-size: 1rem;
+  color: var(--white);
+  line-height: 1.6;
+  text-align: left;
+}
+
+/* Timestamp */
+.timestamp {
+  position: absolute; /* Make it absolutely positioned inside the thought container */
+  bottom: 8px; /* Adjust distance from the bottom */
+  right: 16px; /* Adjust distance from the right */
+  font-size: 0.8rem;
+  color: var(--gold);
+  margin: 0; /* Remove margin to prevent shifting */
+}
+
+/* Footer */
+.footer {
+  background-color: var(--black);
+  text-align: center;
+  padding: 1rem;
+  font-size: 1rem;
+  color: var(--white);
+  border-top: 1px solid var(--grayblack);
+}

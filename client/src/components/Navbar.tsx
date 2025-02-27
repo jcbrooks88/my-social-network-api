@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
-import { useAuth } from "../context/useAuth";
-import { useNavigate } from "react-router-dom"; 
+import { useAuth } from "../context/AuthContext"; // ✅ Ensure correct import
+import { useState } from "react";
 import "../assets/navBar.css";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
-  const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleLogout = () => {
-    logout();
-    navigate("/logout"); 
+    logout(); // ✅ No need to call `navigate("/login")` again
+    setMenuOpen(false); // ✅ Ensure menu closes on mobile after logout
   };
 
   return (
@@ -18,31 +18,38 @@ const Navbar = () => {
         <Link to="/" className="brand">
           Social Network
         </Link>
+        <button
+          className="menu-toggle"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+        >
+          ☰
+        </button>
       </div>
-      <ul className="nav-right">
+      <ul className={`nav-right ${menuOpen ? "open" : ""}`}>
         {user ? (
           <>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
             </li>
             <li>
-              <Link to="/profile">Profile</Link>
+              <Link to="/profile" onClick={() => setMenuOpen(false)}>Profile</Link>
             </li>
             <li>
-              <Link to="/friends">Friends</Link>
+              <Link to="/friends" onClick={() => setMenuOpen(false)}>Friends</Link>
             </li>
             <li>
-              <Link to="/blog">Blog</Link>
+              <Link to="/blog" onClick={() => setMenuOpen(false)}>Blog</Link>
             </li>
             <li>
-              <button onClick={handleLogout} className="logout-button">
+              <button onClick={handleLogout} className="logout-button" type="button">
                 Logout
               </button>
             </li>
           </>
         ) : (
           <li>
-            <Link to="/login">Login</Link>
+            <Link to="/login" onClick={() => setMenuOpen(false)}>Login</Link>
           </li>
         )}
       </ul>
