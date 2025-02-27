@@ -4,14 +4,17 @@ import {
   getUserById,
   createUser,
   updateUser,
-  deleteUser
+  deleteUser,
+  getFriends,
+  addFriend
 } from '../../controllers/friendController';
 
 const friendRoutes = Router();
 
+// Fetch all users
 friendRoutes.get('/', async (req, res) => {
   try {
-    await getUsers(req, res);  // Delegate response handling to the controller
+    await getUsers(req, res);
   } catch (err) {
     if (err instanceof Error) {
       res.status(500).json({ error: err.message });
@@ -21,6 +24,7 @@ friendRoutes.get('/', async (req, res) => {
   }
 });
 
+// Create a new user
 friendRoutes.post('/', async (req, res) => {
   try {
     await createUser(req, res);
@@ -33,6 +37,7 @@ friendRoutes.post('/', async (req, res) => {
   }
 });
 
+// Fetch a user's details by ID
 friendRoutes.get('/:id', async (req, res) => {
   try {
     await getUserById(req, res);
@@ -45,6 +50,7 @@ friendRoutes.get('/:id', async (req, res) => {
   }
 });
 
+// Update user details
 friendRoutes.put('/:id', async (req, res) => {
   try {
     await updateUser(req, res);
@@ -57,10 +63,37 @@ friendRoutes.put('/:id', async (req, res) => {
   }
 });
 
+// Delete a user
 friendRoutes.delete('/:id', async (req, res) => {
   try {
-    await deleteUser(req, res);  // Delegate response handling to the controller
-    res.status(204).send();  // Send status after controller completes
+    await deleteUser(req, res);
+    res.status(204).send();
+  } catch (err) {
+    if (err instanceof Error) {
+      res.status(500).json({ error: err.message });
+    } else {
+      res.status(500).json({ error: 'Unknown error' });
+    }
+  }
+});
+
+// Get the list of friends for a specific user
+friendRoutes.get('/:id/friends', async (req, res) => {
+  try {
+    await getFriends(req, res); 
+  } catch (err) {
+    if (err instanceof Error) {
+      res.status(500).json({ error: err.message });
+    } else {
+      res.status(500).json({ error: 'Unknown error' });
+    }
+  }
+});
+
+// Add a friend to the user's friends list
+friendRoutes.post('/:id/add-friend', async (req, res) => {
+  try {
+    await addFriend(req, res);
   } catch (err) {
     if (err instanceof Error) {
       res.status(500).json({ error: err.message });

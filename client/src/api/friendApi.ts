@@ -8,7 +8,15 @@ export const getFriends = async () => {
             throw new Error('Error fetching friends');
         }
         const data = await response.json();
-        return data;
+
+        // Ensure that the response is an array and extract friends from each object
+        if (Array.isArray(data)) {
+            // Extracting 'friends' arrays from each user object
+            const friends = data.map(item => item.friends).flat();
+            return friends;  // This returns a flattened array of all friends
+        } else {
+            throw new Error('Invalid response format: expected an array');
+        }
     } catch (error) {
         console.error('Error:', error);
         throw error;

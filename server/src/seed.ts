@@ -16,20 +16,18 @@ export const seedDatabase = async () => {
       console.log('✅ Connected to MongoDB');
     }
 
-    // ❌ Delete existing data before inserting new
-    await Friend.deleteMany({});
-    await Thought.deleteMany({});
-    console.log('🗑️ Database cleared');
+    // ✅ Check if user already exists before adding
+    const existingUser = await Friend.findOne({ userId: 'user1' });
+    if (!existingUser) {
+      const newUser = await Friend.create({ userId: 'user1', friends: [] });
+      const newThought = await Thought.create({ userId: newUser._id, content: 'Hello, world!' });
 
-    // ✅ Insert new seed data
-    const newUser = await Friend.create({ userId: 'user1', friends: [] });
-    const newThought = await Thought.create({ userId: newUser._id, content: 'Hello, world!' });
+      console.log('✅ New seed data added:', { newUser, newThought });
+    } else {
+      console.log('ℹ️ User "user1" already exists. No new data added.');
+    }
 
-    console.log('✅ Seed data added:', { newUser, newThought });
-
-    // Close the connection after seeding
-    await mongoose.connection.close();
-    console.log('📌 Database connection closed');
+    // Don't close the connection—let the server keep running
   } catch (error) {
     console.error('❌ Error seeding database:', error);
     await mongoose.connection.close();
@@ -37,7 +35,5 @@ export const seedDatabase = async () => {
   }
 };
 
-// Run the seed function when executed directly
-if (import.meta.url === 'file://' + process.argv[1]) {
-  seedDatabase();
-}
+// Automatically run the seed function when `npm run dev` starts
+seedDatabase();

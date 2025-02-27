@@ -3,7 +3,7 @@ import mongoose, { Schema } from 'mongoose';
 const thoughtSchema = new mongoose.Schema({
   userId: { 
     type: Schema.Types.ObjectId,
-    ref: 'Friend',
+    ref: 'Friend',  // Correct reference to 'Friend'
     required: true
   },
   content: { type: String, required: true },
@@ -11,7 +11,7 @@ const thoughtSchema = new mongoose.Schema({
   reactions: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Reaction',
+      ref: 'Reaction',  // Correct reference to 'Reaction'
     },
   ],
 });
@@ -19,3 +19,4 @@ const thoughtSchema = new mongoose.Schema({
 const Thought = mongoose.model('Thought', thoughtSchema);
 
 export default Thought;
+
