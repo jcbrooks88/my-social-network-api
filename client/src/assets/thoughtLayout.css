@@ -1,3 +1,11 @@
+:root {
+  --black: #000000;
+  --blackBlack: #1d1d1d;
+  --gold: #ffcc00;
+  --grayblack: #333333;
+  --white: #ffffff;
+}
+
 /* Blog Layout Styles */
 .layout-container {
   display: flex;
@@ -97,4 +105,18 @@
   font-size: 1rem;
   color: var(--white);
   border-top: 1px solid var(--grayblack);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .blog-post-wrapper {
+    width: 100%;
+    padding: 0.5rem;
+  }
+}
+
+/* Error Message Styling */
+.error-message {
+  color: red;
+  font-weight: bold;
 }

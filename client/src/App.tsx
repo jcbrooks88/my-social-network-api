@@ -4,12 +4,13 @@ import HomePage from "./pages/HomePage";
 import Profile from "./pages/Profile";
 import FriendsListPage from "./pages/FriendsListPage";
 import LoginPage from "./pages/LoginPage";
-import LogoutPage from "./pages/LogoutPage";
 import BlogPage from "./pages/BlogPage";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ProtectedRoute from "./components/ProtectedRoute";
+
+import './assets/global.css';
 
 const App = () => {
   return (
@@ -26,7 +27,7 @@ const App = () => {
     <Route path="/profile" element={<Profile />} />
     <Route path="/friends" element={<FriendsListPage />} />
     <Route path="/blog" element={<BlogPage />} />
-    <Route path="/logout" element={<LogoutPage />} />
+    
   </Route>
 
   {/* Catch-all route to redirect unknown paths to login */}

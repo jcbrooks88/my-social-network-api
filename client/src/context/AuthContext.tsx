@@ -1,5 +1,4 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 export interface User {
   id: string;
@@ -10,7 +9,7 @@ interface AuthContextType {
   isAuthenticated: boolean;
   user: User | null;
   login: (username: string, password: string) => Promise<boolean>;
-  logout: () => void;
+  logout: () => void; // Remove navigate from here
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -58,14 +57,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const logout = () => {
-    const navigate = useNavigate(); // ✅ Move useNavigate inside logout()
-
     setUser(null);
     setIsAuthenticated(false);
     localStorage.removeItem("user");
     localStorage.removeItem("token");
-
-    navigate("/login"); // Redirect to login after logout
   };
 
   return (

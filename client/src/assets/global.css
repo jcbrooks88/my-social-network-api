@@ -1,105 +1,27 @@
-/* Global Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-  }
-  
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
-  
-  button {
-    cursor: pointer;
-    border: none;
-    outline: none;
-    padding: 10px 20px;
-    font-size: 1rem;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-  }
-  
-  /* Color Theme */
-  :root {
-    --teal: #1abc9c;
-    --purple: #782c95;
-    --white: #ffffff;
-    --grayblack: #6e6e6e;
-    --gold: #f49508;
-    --graywhite: #f9f9f9;
-    --black: #2f2f2f;
-    --blackBlack: #080808;
-  }
-  
-  /* Header */
-  header {
-    background-color: var(--purple);
-    padding: 20px;
-    text-align: center;
-  }
-  
-  header h1 {
-    font-size: 2.5rem;
-    color: var(--black);
-    letter-spacing: 2px;
-  }
-  
-  /* Cards (For Posts/Content) */
-  .card {
-    background-color: var(--black);
-    border-radius: 10px;
-    padding: 20px;
-    margin: 20px;
-    box-shadow: 0 4px 10px var(--black);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 20px var(--black);
-  }
-  
-  .card h2 {
-    color: var(--teal);
-    font-size: 1.8rem;
-  }
-  
-  .card p {
-    color: var(--graywhite);
-    font-size: 1rem;
-  }
-  
-  /* Button Styles */
-  button {
-    background-color: var(--teal);
-    color: #fff;
-  }
-  
-  button:hover {
-    background-color: var(--purple);
-    color: var(--gold);
-  }
-  
-  /* Footer */
-  footer {
-    background-color: var(--black);
-    color: var(--graywhite);
-    text-align: center;
-    padding: 20px;
-    font-size: 0.9rem;
-  }
-  
-  footer a {
-    color: var(--teal);
-  }
-  
-  footer a:hover {
-    color: var(--gold);
-  }
-  
+:root {
+  --black: #000000;
+  --blackBlack: #1d1d1d;
+  --gold: #ffcc00;
+  --gold-dark: #e6b800;
+  --grayblack: #333333;
+  --gray: #555555;
+  --white: #ffffff;
+  --red: #ff4d4d;
+}
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--blackBlack);
+  color: var(--white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

@@ -1,15 +1,17 @@
-import { Link } from "react-router-dom";
-import { useAuth } from "../context/AuthContext"; // ✅ Ensure correct import
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import { useState } from "react";
 import "../assets/navBar.css";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate(); // Move useNavigate() here
 
   const handleLogout = () => {
-    logout(); // ✅ No need to call `navigate("/login")` again
-    setMenuOpen(false); // ✅ Ensure menu closes on mobile after logout
+    logout(); // Call logout from AuthContext
+    navigate("/login"); // Redirect to login page after logout
+    setMenuOpen(false); // Close the mobile menu after logout
   };
 
   return (
