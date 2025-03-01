@@ -8,10 +8,10 @@ import BlogPage from "./pages/BlogPage";
 
 //import Navbar from "./components/Navbar";
 import NavBarUpdate from "./components/NavBarUpdate";
-import Footer from "./components/Footer";
+import Footer from "./components/FooterUpdate";
 import ProtectedRoute from "./components/ProtectedRoute";
 
-import './assets/global.css';
+// import './assets/global.css';
 
 const App = () => {
   return (
