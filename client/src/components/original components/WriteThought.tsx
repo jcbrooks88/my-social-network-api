@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useAuth } from '../context/useAuth';  
+import { useAuth } from '../../context/useAuth';  
 import { useNavigate } from 'react-router-dom';
 import '../assets/writeThought.css';  // Import the CSS file
 

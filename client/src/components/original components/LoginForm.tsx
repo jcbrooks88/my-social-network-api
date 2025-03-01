@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useAuth } from "../context/AuthContext"; // ✅ Ensure correct import
+import { useAuth } from "../../context/AuthContext"; // ✅ Ensure correct import
 import { useNavigate } from "react-router-dom";
 import "../assets/loginForm.css";
 

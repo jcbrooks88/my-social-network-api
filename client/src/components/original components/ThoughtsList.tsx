@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getThoughts } from '../api/thoughtApi';
+import { getThoughts } from '../../api/thoughtApi';
 
 const ThoughtsList: React.FC = () => {
     const [thoughts, setThoughts] = useState<any[]>([]);
@@ -34,7 +34,7 @@ const ThoughtsList: React.FC = () => {
 
     return (
         <div>
-            <h1>Thoughts</h1>
+            <h1> Previous Thoughts </h1>
             {error && <p style={{ color: 'red' }}>{error}</p>}
             {loading ? (
                 <p>Loading thoughts...</p>

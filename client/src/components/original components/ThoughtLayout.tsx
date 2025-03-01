@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import '../assets/thoughtLayout.css';
 
-const BlogLayout = () => {
+const ThoughtLayout = () => {
 
   const [thoughts, setThoughts] = useState<any[]>([]);
   const [error, setError] = useState<string>('');
@@ -64,4 +64,4 @@ const BlogLayout = () => {
   );
 };
 
-export default BlogLayout;
+export default ThoughtLayout;

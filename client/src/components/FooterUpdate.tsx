@@ -1,13 +1,14 @@
-import Container from 'react-bootstrap/Container';
+import React from 'react';
+import { Container } from 'react-bootstrap';
 
-const Footer = () => {
+const Footer: React.FC = () => {
   return (
-    <footer className="bg-light text-center text-lg-start">
+    <footer className="footer-custom">
       <Container className="p-4">
         <p className="text-center">&copy; {new Date().getFullYear()} Get Social, Network. All rights reserved.</p>
       </Container>
     </footer>
   );
-}
+};
 
 export default Footer;

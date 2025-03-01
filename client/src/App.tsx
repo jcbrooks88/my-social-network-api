@@ -4,14 +4,13 @@ import HomePage from "./pages/HomePage";
 import Profile from "./pages/Profile";
 import FriendsListPage from "./pages/FriendsListPage";
 import LoginPage from "./pages/LoginPage";
-import BlogPage from "./pages/BlogPage";
+import ThoughtPage from "./pages/ThoughtPage";
 
 //import Navbar from "./components/Navbar";
 import NavBarUpdate from "./components/NavBarUpdate";
 import Footer from "./components/FooterUpdate";
 import ProtectedRoute from "./components/ProtectedRoute";
 
-// import './assets/global.css';
 
 const App = () => {
   return (
@@ -27,7 +26,7 @@ const App = () => {
     <Route path="/" element={<HomePage />} />
     <Route path="/profile" element={<Profile />} />
     <Route path="/friends" element={<FriendsListPage />} />
-    <Route path="/blog" element={<BlogPage />} />
+    <Route path="/thoughts" element={<ThoughtPage />} />
     
   </Route>
 

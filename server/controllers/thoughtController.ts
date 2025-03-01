@@ -55,7 +55,7 @@ export const getThoughts = async (_req: Request, res: Response) => {
     const thoughts = await Thought.find().populate('reactions');  // Populate reactions for each thought
     res.json(thoughts);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ error: (err as Error).message });
   }
 };
 
@@ -68,7 +68,7 @@ export const getThoughtById = async (req: Request, res: Response) => {
     }
     res.json(thought);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ error: (err as Error).message });
   }
 };
 
@@ -79,7 +79,7 @@ export const createThought = async (req: Request, res: Response) => {
     await newThought.save();
     res.status(201).json(newThought);  // Return the created thought
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ error: (err as Error).message });
   }
 };
 
@@ -92,7 +92,7 @@ export const updateThought = async (req: Request, res: Response) => {
     }
     res.json(updatedThought);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ error: (err as Error).message });
   }
 };
 
@@ -105,7 +105,7 @@ export const deleteThought = async (req: Request, res: Response) => {
     }
     res.status(200).json({ message: 'Thought deleted successfully' });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ error: (err as Error).message });
   }
 };
 
@@ -123,6 +123,6 @@ export const removeReaction = async (req: Request, res: Response) => {
 
     res.status(204).send();  // No content
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ error: (err as Error).message });
   }
 };

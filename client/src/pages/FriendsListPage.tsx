@@ -1,5 +1,5 @@
-import FriendsList from '../components/FriendsList';
-import CreateFriendForm from '../components/CreateFriendForm';
+import FriendsList from '../components/FriendsListUpdate';
+import CreateFriendForm from '../components/CreateFriendUpdate';
 
 const FriendsListPage = () => {
   return (

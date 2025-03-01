@@ -1,0 +1,69 @@
+/* src/styles/custom-bootstrap.scss */
+
+/* Custom color variables */
+$primary: teal;               /* Teal primary color */
+$secondary: #1d1d1d;          /* BlackBlack for secondary elements */
+$body-bg: #fffdfd;            /* Soft white background */
+$body-color: #000000;         /* Black text color */
+$success: #e6b800;            /* Gold color for success */
+$warning: #333333;            /* Dark gray for warning */
+$danger: #555555;             /* Medium gray for danger */
+
+/* Import Bootstrap's SCSS */
+@import 'bootstrap/scss/bootstrap';
+
+/* Customize the Navbar */
+.navbar-custom {
+  background-color: $primary !important; /* Teal background */
+  color: $body-color !important;          /* Black text */
+}
+
+.navbar-custom .navbar-brand {
+  color: $body-color !important; /* Black text for the brand */
+}
+
+.navbar-custom .navbar-nav .nav-link {
+  color: $body-color !important; /* Black text for links */
+}
+
+.navbar-custom .navbar-nav .nav-link:hover {
+  color: $secondary !important; /* BlackBlack hover for links */
+}
+
+.navbar-custom .navbar-toggler-icon {
+  background-color: $body-bg !important; /* BlackBlack for toggle icon */
+}
+
+/* Navbar Right Section */
+.nav-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.nav-right .nav-link {
+  margin-right: 15px;
+}
+
+/* Customize Footer */
+.footer-custom {
+  background-color: $danger !important; /* BlackBlack background */
+  color: $body-color !important;            /* Black text */
+}
+
+.footer-custom a {
+  color: $primary !important; /* Teal for links */
+}
+
+.footer-custom a:hover {
+  color: $success !important; /* Gold for hover links */
+}
+
+.footer-custom .text-center {
+  font-size: 14px;
+}
+
+/* Apply to body background and text */
+body {
+  background-color: $body-bg;  /* Soft white background */
+  color: $body-color;          /* Black text */
+}
