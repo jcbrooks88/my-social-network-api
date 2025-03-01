@@ -6,7 +6,8 @@ import FriendsListPage from "./pages/FriendsListPage";
 import LoginPage from "./pages/LoginPage";
 import BlogPage from "./pages/BlogPage";
 
-import Navbar from "./components/Navbar";
+//import Navbar from "./components/Navbar";
+import NavBarUpdate from "./components/NavBarUpdate";
 import Footer from "./components/Footer";
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -15,7 +16,7 @@ import './assets/global.css';
 const App = () => {
   return (
     <>
-      <Navbar />
+      <NavBarUpdate />
 
       <Routes>
   {/* Public route for login */}
